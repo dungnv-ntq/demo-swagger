@@ -33,7 +33,8 @@ public class HelloController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity createStudent(Student student) {
+    public ResponseEntity createStudent(@RequestBody  Student student) {
+        System.out.println(student);
         return ResponseEntity.ok(repository.save(student));
     }
 

@@ -1,13 +1,13 @@
 package com.dung.demoswagger.entities;
 
-import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "class")
-@ToString
+@Data
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +15,7 @@ public class Class {
 
     private String name;
 
-    @OneToMany(mappedBy = "aClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "aClass")
+    @JsonIgnore
     private List<Student> students;
 }
