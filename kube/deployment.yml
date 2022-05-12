@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-swagger-deployment
+  labels:
+    app: demo-swagger
+
+spec:
+  selector:
+    matchLabels:
+      app: demo-swagger
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: demo-swagger
+    spec:
+      containers:
+        - name: demo-swagger
+          image: docker.io/dungnv45/demo-swagger
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_HOST
+              value: mysql
+          imagePullPolicy: Always
